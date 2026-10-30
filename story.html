@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% from "_macros.html" import cover with context %}
+{% block title %}{{ story.title }} — Infinite Anime/Manhwa{% endblock %}
+{% block description %}{{ story.description[:150] if story.description else story.title }}{% endblock %}
+
+{% block content %}
+<section class="wrap">
+  <button class="back-btn" onclick="history.back()">← Orqaga</button>
+
+  <div class="story-hero">
+    {{ cover(story, "story-hero__cover") }}
+    <div>
+      <span class="story-hero__status">{{ story.status }}</span>
+      <h1 class="story-hero__title">{{ story.title }}</h1>
+      {% if story.description %}<p class="story-hero__desc">{{ story.description }}</p>{% endif %}
+      {% if story.genres %}
+      <div class="story-hero__tags">
+        {% for g in story.genres.split(',') %}<span class="story-hero__tag">{{ g }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      {% if chapters %}
+      <div style="margin-top:24px;">
+        {% set first = chapters[-1] %}
+        <a class="btn btn--solid" href="{{ url_for('watch_chapter' if story.kind == 'anime' else 'read_chapter', chapter_id=first.id) }}">
+          {{ 'Ko\'rishni boshlash' if story.kind == 'anime' else 'O\'qishni boshlash' }}
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="section__head">
+      <h2 class="section__title">{{ 'Qismlar' if story.kind == 'anime' else 'Boblar' }}</h2>
+    </div>
+    <div class="chapter-list">
+      {% for ch in chapters %}
+      <a href="{{ url_for('watch_chapter' if story.kind == 'anime' else 'read_chapter', chapter_id=ch.id) }}" class="chapter-item">
+        <span class="chapter-item__title">{{ ch.number }}-{{ kind_word(story.kind) }}{% if ch.title %} · {{ ch.title }}{% endif %}</span>
+        <span class="chapter-item__date">{{ ch.created_at[:10] }}</span>
+      </a>
+      {% else %}
+      <p style="color:var(--graphite);">Hali {{ kind_word(story.kind) }} qo'shilmagan.</p>
+      {% endfor %}
+    </div>
+  </section>
+</section>
+{% endblock %}

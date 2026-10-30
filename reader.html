@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ story.title }} — {{ chapter.number }}-bob{% endblock %}
+
+{% block content %}
+<div class="wrap"><button class="back-btn" onclick="history.back()">← Orqaga</button></div>
+
+<section class="section" style="padding-top:16px;">
+  <div class="wrap">
+    <div class="reader-head">
+      <a href="{{ url_for('story_detail', story_id=story.id) }}" class="reader-head__story">{{ story.title }}</a>
+      <h1 class="reader-head__title">{{ chapter.number }}-bob{% if chapter.title %} · {{ chapter.title }}{% endif %}</h1>
+      <span class="reader-head__progress">{{ chapter.number }} / {{ chapters[-1].number }}-bob</span>
+    </div>
+
+    <div class="reader-images">
+      {% for img in images %}
+        <img src="{{ url_for('static', filename='uploads/pages/' ~ img) }}" alt="{{ story.title }} — {{ chapter.number }}-bob, {{ loop.index }}-sahifa" loading="lazy">
+      {% else %}
+        <div class="reader-image-placeholder">Sahifalar yuklanmagan</div>
+      {% endfor %}
+    </div>
+
+    <div class="reader-nav">
+      {% if prev_ch %}<a href="{{ url_for('read_chapter', chapter_id=prev_ch.id) }}" class="btn">← Oldingi</a>
+      {% else %}<span class="btn is-disabled">← Oldingi</span>{% endif %}
+      {% if next_ch %}<a href="{{ url_for('read_chapter', chapter_id=next_ch.id) }}" class="btn btn--solid">Keyingi →</a>
+      {% else %}<span class="btn btn--solid is-disabled">Keyingi →</span>{% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

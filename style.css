@@ -1,0 +1,1053 @@
+/* ============================================
+   DIZAYN TOKENLARI — "Peak Design" uslubi: oq/qora editorial, monoxrom
+   ============================================ */
+:root {
+  /* Ranglar */
+  --ink: #1a211e;          /* asosiy matn, qora panellar, tugma foni */
+  --obsidian: #0c0c0c;     /* chuqur panellar (hero, video/rasm o'rni) */
+  --paper: #ffffff;        /* asosiy sahifa foni */
+  --fog: #eef1f0;          /* yumshoq fon (input, ikkinchi darajali) */
+  --mist: #e0e0e0;         /* ajratkich chiziqlar */
+  --ash: #cccfcd;          /* input/karta hairline chegarasi */
+  --graphite: #606562;     /* ikkinchi darajali matn */
+  --ember: #cc2e39;        /* kamdan-kam ishlatiladigan qizil urg'u */
+
+  /* Tipografiya */
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif; /* katta sarlavhalar */
+  --font-body: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;    /* matn */
+  --font-label: "Oswald", "Inter", sans-serif; /* siqilgan, katta harfli label/tugma matni */
+
+  /* Layout - 4px asosiy birlik */
+  --max-width: 1200px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 48px;
+  --space-5: 64px;
+  --space-6: 80px;
+  --radius-nav: 4px;
+  --radius-input: 4px;
+  --radius-btn: 4px;
+  --radius-card: 8px;
+  --radius-badge: 9999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+/* Bryant-uslub label - navigatsiya, tugma, eyebrow uchun umumiy klass */
+.label {
+  font-family: var(--font-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.057em;
+}
+
+/* ============================================
+   E'LON BANNERI - to'liq qora tor chiziq
+   ============================================ */
+.promo {
+  background: var(--ink);
+}
+
+.promo__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 8px var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.057em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.promo__badge {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 2px 10px;
+  border-radius: var(--radius-badge);
+  font-size: 11px;
+}
+
+.promo__link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.promo__close {
+  background: none;
+  border: none;
+  color: var(--paper);
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: var(--space-1);
+  opacity: 0.8;
+}
+
+.promo__close:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   NAVIGATSIYA - oq, hairline pastki chegara
+   ============================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--mist);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 64px;
+}
+
+.nav__logo {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.nav__logo span {
+  font-family: var(--font-label);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.5em;
+  letter-spacing: 0.05em;
+  color: var(--graphite);
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+
+.nav__links {
+  display: flex;
+  gap: var(--space-3);
+  list-style: none;
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.038em;
+  text-transform: uppercase;
+}
+
+.nav__links a {
+  color: var(--ink);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav__links a:hover,
+.nav__links a.is-active {
+  border-color: var(--ink);
+}
+
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ink);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ============================================
+   HERO SPLIT PANEL - chapda qora matn, o'ngda rasm o'rni
+   ============================================ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+
+.hero__inner {
+  background: var(--obsidian);
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-4);
+}
+
+.hero__text {
+  max-width: 480px;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.057em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin-bottom: var(--space-1);
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+}
+
+.hero__desc {
+  margin-top: var(--space-2);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  max-width: 46ch;
+}
+
+.hero__actions {
+  margin-top: var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* O'ng panel - rasm joyi (hozircha tekis rang, haqiqiy rasm qo'yilganda shu joyga background-image qo'yiladi) */
+.hero__image {
+  background: var(--fog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.hero__quote-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 32px);
+  color: var(--ink);
+  line-height: 1.3;
+  max-width: 22ch;
+}
+
+.hero__quote-label {
+  margin-top: var(--space-2);
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+/* ============================================
+   TUGMALAR
+   ============================================ */
+.btn {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.057em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--ash);
+  color: var(--ink);
+  background: transparent;
+  transition: opacity 0.15s ease;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+.btn--solid {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* Qora fon (hero) ustidagi tugmalar - teskari ranglar */
+.hero .btn {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.hero .btn--solid {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.btn.is-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ============================================
+   BO'LIM SARLAVHALARI
+   ============================================ */
+.section {
+  padding: var(--space-6) 0;
+}
+
+.section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.section__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--ink);
+}
+
+.section__link {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.057em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.section__link:hover {
+  color: var(--ink);
+}
+
+/* ============================================
+   KATTA TANLOV PANELLARI (Anime / Manhwa)
+   ============================================ */
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.panel {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--obsidian);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.panel__title {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.panel__sub {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* ============================================
+   PRODUKT/KONTENT KARTOCHKALARI GRID
+   ============================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-3);
+}
+
+.card {
+  display: block;
+  background: transparent;
+}
+
+.card__cover {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--fog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--graphite);
+  font-size: 13px;
+  object-fit: cover;
+}
+
+.card__body {
+  padding: var(--space-1) 0 0;
+}
+
+.card__title {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.card__meta {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--graphite);
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: #4e4e4e;
+  border-radius: var(--radius-badge);
+  padding: 2px 10px;
+  margin-top: var(--space-1);
+}
+
+/* ============================================
+   FOOTER - qora, yakunlovchi panel
+   ============================================ */
+.footer {
+  background: var(--ink);
+  padding: var(--space-3);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+/* ============================================
+   ORQAGA QAYTISH TUGMASI
+   ============================================ */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--graphite);
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: var(--space-3) 0 0;
+}
+
+.back-btn:hover {
+  color: var(--ink);
+}
+
+/* ============================================
+   HIKOYA SAHIFASI (story.html)
+   ============================================ */
+.story-hero {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  align-items: start;
+}
+
+.story-hero__cover {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-card);
+  background: var(--fog);
+}
+
+.story-hero__status {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: var(--radius-badge);
+  padding: 4px 12px;
+  margin-bottom: var(--space-2);
+}
+
+.story-hero__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(32px, 5vw, 44px);
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.story-hero__desc {
+  margin-top: var(--space-2);
+  color: var(--graphite);
+  max-width: 60ch;
+}
+
+.story-hero__tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
+}
+
+.story-hero__tag {
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ash);
+  border-radius: var(--radius-badge);
+  padding: 4px 12px;
+}
+
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.chapter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--mist);
+}
+
+.chapter-item__title {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.chapter-item__date {
+  color: var(--graphite);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ============================================
+   READER (manhwa)
+   ============================================ */
+.reader-head {
+  text-align: center;
+  padding: var(--space-2) 0 var(--space-4);
+}
+
+.reader-head__story {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.reader-head__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+.reader-head__progress {
+  display: inline-block;
+  margin-top: var(--space-1);
+  font-size: 12px;
+  color: var(--graphite);
+  background: var(--fog);
+  border-radius: var(--radius-badge);
+  padding: 4px 12px;
+}
+
+.reader-images {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.reader-images img,
+.reader-image-placeholder {
+  width: 100%;
+  display: block;
+}
+
+.reader-image-placeholder {
+  aspect-ratio: 3 / 4;
+  background: var(--obsidian);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.reader-text {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: var(--graphite);
+}
+
+.reader-text p {
+  margin-bottom: 1.3em;
+}
+
+.reader-nav {
+  max-width: 720px;
+  margin: var(--space-4) auto 0;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+/* ============================================
+   WATCH (anime video)
+   ============================================ */
+.video-player {
+  max-width: 900px;
+  margin: var(--space-2) auto 0;
+  aspect-ratio: 16 / 9;
+  background: var(--obsidian);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.video-player video,
+.video-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.watch-meta {
+  max-width: 900px;
+  margin: var(--space-3) auto 0;
+  text-align: center;
+}
+
+.watch-meta__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+.episode-row {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.episode-card {
+  flex: 0 0 auto;
+  width: 160px;
+}
+
+.episode-card__thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-card);
+  background: var(--fog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--graphite);
+  font-size: 13px;
+  border: 1px solid transparent;
+}
+
+.episode-card.is-active .episode-card__thumb {
+  border-color: var(--ink);
+}
+
+/* ============================================
+   YANGILIKLAR
+   ============================================ */
+.news-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-item {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--mist);
+}
+
+.news-item__date {
+  flex-shrink: 0;
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--graphite);
+  width: 80px;
+}
+
+.news-item__title {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.news-item__desc {
+  margin-top: 4px;
+  color: var(--graphite);
+  font-size: 14px;
+}
+
+/* ============================================
+   MANIFESTO BLOK - sayt reklamasi (promo-ad)
+   ============================================ */
+.promo-ad {
+  text-align: center;
+  padding: var(--space-5) var(--space-3);
+}
+
+.promo-ad__eyebrow {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.057em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.promo-ad__title {
+  margin-top: var(--space-1);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--ink);
+}
+
+.promo-ad__desc {
+  margin-top: var(--space-2);
+  color: var(--graphite);
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.promo-ad__actions {
+  margin-top: var(--space-3);
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   RESPONSIV
+   ============================================ */
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__image {
+    min-height: 220px;
+    order: -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--mist);
+    display: none;
+  }
+
+  .nav__links.is-open {
+    display: flex;
+  }
+
+  .nav__toggle {
+    display: block;
+  }
+
+  .panels {
+    grid-template-columns: 1fr;
+  }
+
+  .story-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .story-hero__cover {
+    max-width: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   SCROLL-FON EFFEKTI (bosh sahifa)
+   ============================================ */
+.scrollfx { position: relative; }
+
+.scrollfx__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+.scrollfx__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--obsidian);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.scrollfx__bg.is-active { opacity: 1; }
+
+.scrollfx__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.scrollfx__panel {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-5);
+  transform: translateX(-50%);
+  width: calc(100% - var(--space-4));
+  max-width: 560px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  z-index: 5;
+}
+
+.scrollfx__eyebrow {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.scrollfx__title {
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 3vw, 30px);
+  color: #ffffff;
+}
+
+.scrollfx__spacer { height: 100vh; }
+
+/* ============================================
+   XABAR (flash), FORMALAR, QIDIRUV, FILTR
+   ============================================ */
+.flash {
+  background: var(--fog);
+  border: 1px solid var(--ash);
+  border-radius: var(--radius-card);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+button.btn { cursor: pointer; font-family: var(--font-label); }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 640px;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="password"],
+.form select,
+.form textarea,
+.filters input[type="text"] {
+  width: 100%;
+  background: var(--fog);
+  border: 1px solid var(--ash);
+  border-radius: var(--radius-input);
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--ink);
+}
+
+.form textarea { min-height: 120px; resize: vertical; }
+.form input[type="file"] { font-size: 14px; }
+.hint { font-size: 13px; color: var(--graphite); margin-top: 6px; }
+
+.filters {
+  display: flex;
+  gap: var(--space-1);
+  max-width: 520px;
+  margin-bottom: var(--space-2);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.chip {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: var(--radius-badge);
+  border: 1px solid var(--ash);
+  color: var(--ink);
+}
+
+.chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+/* ============================================
+   ADMIN PANEL
+   ============================================ */
+.admin-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.admin-actions { display: flex; gap: var(--space-1); flex-wrap: wrap; align-items: center; }
+
+.admin-card {
+  border: 1px solid var(--mist);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.admin-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.admin-chapters { margin-top: var(--space-2); border-top: 1px solid var(--mist); padding-top: var(--space-1); }
+
+.admin-chapter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.btn--danger { color: var(--ember); border-color: var(--ember); }
+.link-danger { background: none; border: none; color: var(--ember); cursor: pointer; font-size: 13px; text-decoration: underline; }

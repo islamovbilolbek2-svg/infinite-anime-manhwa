@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% from "_macros.html" import cover with context %}
+
+{% block content %}
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <p class="hero__eyebrow">Infinite Anime/Manhwa</p>
+        <h1 class="hero__title">Bu yerda mening dunyolarim yashaydi</h1>
+        <p class="hero__desc">
+          Har bir bob, har bir qism — o'zim o'ylab topgan, o'zim chizgan.
+          Anime uslubidagi hikoyalar va manhwa formatidagi ishlarim shu yerda to'planadi.
+        </p>
+        <div class="hero__actions">
+          <a href="{{ url_for('anime_list') }}" class="btn btn--solid">Anime ko'rish</a>
+          <a href="{{ url_for('manhwa_list') }}" class="btn">Manhwa o'qish</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__image">
+      <div>
+        <p class="hero__quote-text">"Har bir chizgan chizig'im — bir dunyoning boshlanishi."</p>
+        <p class="hero__quote-label">— Infinite Anime/Manhwa</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLL-FON EFFEKTI: rasmlarni static/images/scene1.jpg, scene2.jpg, scene3.jpg ga qo'ying -->
+  <section class="scrollfx" id="scrollfx">
+    <div class="scrollfx__sticky">
+      <div class="scrollfx__bg is-active" data-index="0" style="background-image:url('{{ url_for('static', filename='images/scene1.jpg') }}')"></div>
+      <div class="scrollfx__bg" data-index="1" style="background-image:url('{{ url_for('static', filename='images/scene2.jpg') }}')"></div>
+      <div class="scrollfx__bg" data-index="2" style="background-image:url('{{ url_for('static', filename='images/scene3.jpg') }}')"></div>
+      <div class="scrollfx__panel">
+        <p class="scrollfx__eyebrow" id="scrollfxEyebrow">1-dunyo</p>
+        <h2 class="scrollfx__title" id="scrollfxTitle">Har bir sahifa — yangi olam</h2>
+      </div>
+    </div>
+    <div class="scrollfx__spacer" data-trigger="0" data-eyebrow="1-dunyo" data-title="Har bir sahifa — yangi olam"></div>
+    <div class="scrollfx__spacer" data-trigger="1" data-eyebrow="2-dunyo" data-title="Chizgan har chizig'im — hikoya"></div>
+    <div class="scrollfx__spacer" data-trigger="2" data-eyebrow="3-dunyo" data-title="Davomi hali yozilmagan"></div>
+  </section>
+
+  <!-- ANIME / MANHWA TANLOVI -->
+  <section class="section">
+    <div class="wrap">
+      <div class="panels">
+        <a href="{{ url_for('anime_list') }}" class="panel">
+          <span class="panel__title">Anime</span>
+          <span class="panel__sub">Barcha seriyalar va qismlar</span>
+        </a>
+        <a href="{{ url_for('manhwa_list') }}" class="panel">
+          <span class="panel__title">Manhwa</span>
+          <span class="panel__sub">Chizilgan boblar, o'qish tartibida</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SO'NGGI QO'SHILGANLAR -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="section__title">So'nggi qo'shilganlar</h2>
+        <a href="{{ url_for('news') }}" class="section__link">Yangiliklar →</a>
+      </div>
+      <div class="grid">
+        {% for ch in latest %}
+        <a href="{{ url_for('watch_chapter' if ch.kind == 'anime' else 'read_chapter', chapter_id=ch.id) }}" class="card">
+          {{ cover(ch) }}
+          <div class="card__body">
+            <div class="card__title">{{ ch.title }}</div>
+            <div class="card__meta">{{ ch.number }}-{{ kind_word(ch.kind) }} · {{ 'Anime' if ch.kind == 'anime' else 'Manhwa' }}</div>
+          </div>
+        </a>
+        {% else %}
+        <p style="color:var(--graphite);">Hozircha hech narsa qo'shilmagan. Admin paneldan birinchi hikoyani qo'shing.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- SAYT REKLAMASI -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="promo-ad">
+        <p class="promo-ad__eyebrow">Infinite Anime/Manhwa</p>
+        <h2 class="promo-ad__title">Yangi qism chiqqanda birinchi bo'lib biling</h2>
+        <p class="promo-ad__desc">
+          Saytni belgilab qo'ying (bookmark) va do'stlaringizga ulashing —
+          yangi boblar va qismlar shu yerda birinchi chiqadi.
+        </p>
+        <div class="promo-ad__actions">
+          <a href="{{ url_for('news') }}" class="btn btn--solid">Yangiliklarni ko'rish</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Scroll-fon effekti: pastga tushganda rasm va matn almashadi
+  const fxBgs = document.querySelectorAll('.scrollfx__bg');
+  const fxTitle = document.getElementById('scrollfxTitle');
+  const fxEyebrow = document.getElementById('scrollfxEyebrow');
+  const fxObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const idx = entry.target.dataset.trigger;
+      fxBgs.forEach(bg => bg.classList.toggle('is-active', bg.dataset.index === idx));
+      fxTitle.textContent = entry.target.dataset.title;
+      fxEyebrow.textContent = entry.target.dataset.eyebrow;
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.scrollfx__spacer').forEach(s => fxObserver.observe(s));
+</script>
+{% endblock %}

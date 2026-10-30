@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ story.title }} — {{ chapter.number }}-qism{% endblock %}
+
+{% block content %}
+<div class="wrap"><button class="back-btn" onclick="history.back()">← Orqaga</button></div>
+
+<section class="wrap">
+  <div class="video-player">
+    {% if chapter.video_file %}
+      <video controls preload="metadata" src="{{ url_for('static', filename='uploads/videos/' ~ chapter.video_file) }}"></video>
+    {% elif embed %}
+      <iframe src="{{ embed }}" title="{{ story.title }} — {{ chapter.number }}-qism"
+              allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    {% elif chapter.video_url.lower().endswith(('.mp4', '.webm')) %}
+      <video controls preload="metadata" src="{{ chapter.video_url }}"></video>
+    {% else %}
+      <div class="video-placeholder">Video topilmadi</div>
+    {% endif %}
+  </div>
+
+  <div class="watch-meta">
+    <a href="{{ url_for('story_detail', story_id=story.id) }}" class="reader-head__story">{{ story.title }}</a>
+    <h1 class="watch-meta__title">{{ chapter.number }}-qism{% if chapter.title %} · {{ chapter.title }}{% endif %}</h1>
+    <span class="reader-head__progress">{{ chapter.number }} / {{ chapters[-1].number }}-qism</span>
+  </div>
+
+  <div class="reader-nav">
+    {% if prev_ch %}<a href="{{ url_for('watch_chapter', chapter_id=prev_ch.id) }}" class="btn">← Oldingi qism</a>
+    {% else %}<span class="btn is-disabled">← Oldingi qism</span>{% endif %}
+    {% if next_ch %}<a href="{{ url_for('watch_chapter', chapter_id=next_ch.id) }}" class="btn btn--solid">Keyingi qism →</a>
+    {% else %}<span class="btn btn--solid is-disabled">Keyingi qism →</span>{% endif %}
+  </div>
+
+  <section class="section">
+    <div class="section__head"><h2 class="section__title">Barcha qismlar</h2></div>
+    <div class="episode-row">
+      {% for c in chapters %}
+      <a href="{{ url_for('watch_chapter', chapter_id=c.id) }}" class="episode-card {% if c.id == chapter.id %}is-active{% endif %}">
+        <div class="episode-card__thumb">{{ c.number }}-qism</div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+</section>
+{% endblock %}
