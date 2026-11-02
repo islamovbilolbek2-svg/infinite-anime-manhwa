@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinite Anime/Manhwa — O'zim yozgan anime va manhwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATSIYA -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">INFINITE<span>ANIME/MANHWA</span></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menyuni ochish">☰</button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html" class="is-active">Bosh sahifa</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="manhwa.html">Manhwa</a></li>
+        <li><a href="yangiliklar.html">Yangiliklar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="promo" id="promoBar">
+    <div class="promo__inner">
+      <span class="promo__badge">Yangi</span>
+      <span>Yangi bob chiqdi — <a href="manhwa.html" class="promo__link">hozir o'qing</a></span>
+      <button class="promo__close" id="promoClose" aria-label="Bannerni yopish">✕</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+     <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <p class="hero__eyebrow">Infinite Anime/Manhwa</p>
+        <h1 class="hero__title">Bu yerda mening dunyolarim yashaydi</h1>
+        <p class="hero__desc">
+          Har bir bob, har bir qism — o'zim o'ylab topgan, o'zim chizgan.
+          Anime uslubidagi hikoyalar va manhwa formatidagi ishlarim shu yerda to'planadi.
+        </p>
+        <div class="hero__actions">
+          <a href="anime.html" class="btn btn--solid">Hozir o'qing</a>
+          <a href="manhwa.html" class="btn">Manhwa bo'limi</a>
+        </div>
+      </div>
+    </div>
+       <div class="hero__image">
+      <div>
+        <p class="hero__quote-text">"Bir sahifa. Bir taqdir. Cheksiz hikoyalar."</p>
+        <p class="hero__quote-label">— Infinite Anime/Manhwa</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASOSIY TANLOV: ANIME / MANHWA -->
+  <section class="section">
+    <div class="wrap">
+      <div class="panels">
+        <a href="anime.html" class="panel">
+          <span class="panel__title">Anime</span>
+          <span class="panel__sub">Barcha seriyalar va boblar</span>
+        </a>
+        <a href="manhwa.html" class="panel">
+          <span class="panel__title">Manhwa</span>
+          <span class="panel__sub">Chizilgan boblar, o'qish tartibida</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SO'NGGI QO'SHILGANLAR (hozircha bo'sh joy - keyinroq to'ldiramiz) -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="section__title">So'nggi boblar</h2>
+        <a href="anime.html" class="section__link">Barchasini ko'rish →</a>
+      </div>
+      <div class="grid">
+        <!-- Har bir .card — bitta hikoya/bob. Hozircha 3 ta namuna qo'ydim,
+             keyin buni real kontent bilan almashtiramiz -->
+        <a href="story.html" class="card">
+          <div class="card__cover">Muqova rasmi</div>
+          <div class="card__body">
+            <div class="card__title">Hikoya nomi</div>
+            <div class="card__meta">1-bob · Anime</div>
+            <span class="tag">Yangi</span>
+          </div>
+        </a>
+        <a href="story.html" class="card">
+          <div class="card__cover">Muqova rasmi</div>
+          <div class="card__body">
+            <div class="card__title">Hikoya nomi</div>
+            <div class="card__meta">1-bob · Manhwa</div>
+            <span class="tag">Yangi</span>
+          </div>
+        </a>
+        <a href="story.html" class="card">
+          <div class="card__cover">Muqova rasmi</div>
+          <div class="card__body">
+            <div class="card__title">Hikoya nomi</div>
+            <div class="card__meta">2-bob · Manhwa</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <section class="section">
+    <div class="wrap">
+      <div class="promo-ad">
+        <p class="promo-ad__eyebrow">Infinite Anime/Manhwa</p>
+        <h2 class="promo-ad__title">Yangi qism chiqqanda birinchi bo'lib biling</h2>
+        <p class="promo-ad__desc">
+          Saytni belgilab qo'ying (bookmark) va do'stlaringizga ulashing —
+          yangi boblar va qismlar shu yerda birinchi chiqadi.
+        </p>
+        <div class="promo-ad__actions">
+          <a href="yangiliklar.html" class="btn btn--solid">Yangiliklarni ko'rish</a>
+        </div>
+      </div>
+    </div>
+  </section>
+    © 2026 Infinite Anime/Manhwa. Barcha kontent muallifga tegishli.
+  </footer>
+
+
+  <script>
+    // Mobil menyu tugmasi - kichik ekranda menyuni ochib/yopadi
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('is-open');
+    });
+
+    // E'lon bannerini yopish tugmasi
+    const promoBar = document.getElementById('promoBar');
+    const promoClose = document.getElementById('promoClose');
+    promoClose.addEventListener('click', () => {
+      promoBar.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
