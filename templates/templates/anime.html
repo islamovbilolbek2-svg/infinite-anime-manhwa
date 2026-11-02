@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anime — Infinite Anime/Manhwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">INFINITE<span>ANIME/MANHWA</span></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menyuni ochish">☰</button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Bosh sahifa</a></li>
+        <li><a href="anime.html" class="is-active">Anime</a></li>
+        <li><a href="manhwa.html">Manhwa</a></li>
+        <li><a href="yangiliklar.html">Yangiliklar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="promo" id="promoBar">
+    <div class="promo__inner">
+      <span class="promo__badge">Yangi</span>
+      <span>Yangi bob chiqdi — <a href="manhwa.html" class="promo__link">hozir o'qing</a></span>
+      <button class="promo__close" id="promoClose" aria-label="Bannerni yopish">✕</button>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: var(--space-4);">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="section__title">Anime</h2>
+      </div>
+
+      <!-- Har bir .card bitta anime seriya/hikoyani ifodalaydi.
+           Hozircha 6 ta bo'sh namuna - haqiqiy nom, rasm va bob sonini
+           siz beradigan kontent bilan almashtiramiz -->
+      <div class="grid">
+        <a href="story-anime.html" class="card"></a>
+          <div class="card__cover"><img src="images/images/naruto-muqova.jpg" alt="Naruto muqovasi"></div>
+          <div class="card__body">
+            <div class="card__title">Naruto 1</div>
+            <div class="card__meta">24-qism</div>
+            <span class="tag">Davom etmoqda</span>
+          </div>
+        </a>
+        <a href="story-anime.html" class="card"></a>
+          <div class="card__cover">Muqova rasmi</div>
+          <div class="card__body">
+            <div class="card__title">Hikoya nomi 2</div>
+            <div class="card__meta">12-qism</div>
+          </div>
+        </a>
+       <a href="story-anime.html" class="card"></a>
+          <div class="card__cover">Muqova rasmi</div>
+          <div class="card__body">
+            <div class="card__title">Hikoya nomi 3</div>
+            <div class="card__meta">1-qism</div>
+            <span class="tag">Yangi</span>
+          </div>
+        </a>
+      <a href="story-anime.html" class="card"></a>
+          <div class="card__cover">Muqova rasmi</div>
+          <div class="card__body">
+            <div class="card__title">Hikoya nomi 4</div>
+            <div class="card__meta">40-qism</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Infinite Anime/Manhwa. Barcha kontent muallifga tegishli.
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('is-open');
+    });
+
+    const promoBar = document.getElementById('promoBar');
+    const promoClose = document.getElementById('promoClose');
+    promoClose.addEventListener('click', () => {
+      promoBar.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
