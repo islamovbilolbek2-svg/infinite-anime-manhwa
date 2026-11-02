@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bob o'qish — Infinite Anime/Manhwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">INFINITE<span>ANIME/MANHWA</span></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menyuni ochish">☰</button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Bosh sahifa</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="manhwa.html">Manhwa</a></li>
+        <li><a href="yangiliklar.html">Yangiliklar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <button class="back-btn" onclick="history.back()">← Orqaga</button>
+    </div>
+           <div class="wrap">
+      <div class="reader-head">
+        <a href="story.html" class="reader-head__story">Hikoya nomi</a>
+        <h1 class="reader-head__title" id="bobTitle">2-bob</h1>
+        <span class="reader-head__progress" id="bobProgress">2 / 15-bob</span>
+      </div>
+
+      <!-- MANHWA UCHUN: rasmlar tik ustma-ust (haqiqiy rasm qo'yilganda
+           .reader-image-placeholder o'rniga <img src="..."> qo'yiladi) -->
+           <div class="reader-images">
+        <img src="images/bob1-sahifa1.jpg" alt="Sahifa 1">
+        <img src="images/bob1-sahifa2.jpg" alt="Sahifa 2">
+        <img src="images/bob1-sahifa3.jpg" alt="Sahifa 3">
+      </div>
+
+     
+
+            <div class="reader-nav">
+        <a href="#" class="btn" id="prevBtn">← Oldingi</a>
+        <a href="#" class="btn btn--solid" id="nextBtn">Keyingi →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Infinite Anime/Manhwa. Barcha kontent muallifga tegishli.
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('is-open');
+    });
+      // Bob raqamini URL'dan o'qib, sarlavha va tugmalarni yangilash
+    const totalBoblar = 15; // jami boblar soni - haqiqiy songa moslang
+    const bparams = new URLSearchParams(window.location.search);
+    let bob = parseInt(bparams.get('bob')) || 1;
+    if (bob < 1) bob = 1;
+    if (bob > totalBoblar) bob = totalBoblar;
+
+    document.getElementById('bobTitle').textContent = bob + '-bob';
+    document.getElementById('bobProgress').textContent = bob + ' / ' + totalBoblar + '-bob';
+
+    const prevBtn2 = document.getElementById('prevBtn');
+    const nextBtn2 = document.getElementById('nextBtn');
+
+    if (bob <= 1) {
+      prevBtn2.classList.add('is-disabled');
+    } else {
+      prevBtn2.href = 'reader.html?bob=' + (bob - 1);
+    }
+
+    if (bob >= totalBoblar) {
+      nextBtn2.classList.add('is-disabled');
+    } else {
+      nextBtn2.href = 'reader.html?bob=' + (bob + 1);
+    }
+  </script>
+</body>
+</html>

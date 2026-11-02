@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hikoya nomi — Infinite Anime/Manhwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">INFINITE<span>ANIME/MANHWA</span></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menyuni ochish">☰</button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Bosh sahifa</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="manhwa.html">Manhwa</a></li>
+        <li><a href="yangiliklar.html">Yangiliklar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="wrap">
+    <button class="back-btn" onclick="history.back()">← Orqaga</button>
+
+    <!-- MUQOVA + MA'LUMOT -->
+    <div class="story-hero">
+      <div class="story-hero__cover"></div>
+      <div>
+        <span class="story-hero__status">Davom etmoqda</span>
+        <h1 class="story-hero__title">Naruto</h1>
+        <div class="card__cover"><img src="images/images/naruto-muqova.jpg" alt="Naruto muqovasi"></div>
+        <p class="story-hero__desc">
+          Bu yerga hikoyaning qisqa tavsifi yoziladi — nima haqida, bosh qahramon kim,
+          va nega o'quvchi buni o'qishi kerak. 2-3 gap yetarli.
+        </p>
+        <div class="story-hero__tags">
+          <span class="story-hero__tag">Fantastika</span>
+          <span class="story-hero__tag">Jang</span>
+          <span class="story-hero__tag">Drama</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOBLAR RO'YXATI -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section__head">
+        <h2 class="section__title">Boblar</h2>
+      </div>
+      <!-- Har bir .chapter-item bitta bobga olib boradi (hozircha reader.html'ga) -->
+      <div class="chapter-list">
+              <a href="reader.html?bob=1" class="chapter-item"></a>
+          <span class="chapter-item__title">1-qism</span>
+          <span class="chapter-item__date">13-sen</span>
+        </a>
+        <a href="reader.html?bob=2" class="chapter-item">
+          <span class="chapter-item__title">2-qism</span>
+          <span class="chapter-item__date">05-sen</span>
+        </a>
+        <a href="reader.html?bob=3" class="chapter-item">
+          <span class="chapter-item__title">3-qism</span>
+          <span class="chapter-item__date">01-sen</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <footer class="footer">
+    © 2026 Infinite Anime/Manhwa. Barcha kontent muallifga tegishli.
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('is-open');
+    });
+  </script>
+</body>
+</html>

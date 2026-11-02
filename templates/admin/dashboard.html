@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Admin panel{% endblock %}
+{% block promo %}{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:48px;">
+  <div class="wrap">
+    <div class="admin-bar">
+      <h1 class="section__title">Admin panel</h1>
+      <div class="admin-actions">
+        <a class="btn btn--solid" href="{{ url_for('admin_story_new') }}">+ Yangi hikoya</a>
+        <form method="post" action="{{ url_for('admin_logout') }}" style="display:inline;">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="btn" type="submit">Chiqish</button>
+        </form>
+      </div>
+    </div>
+
+    {% for s in stories %}
+    <div class="admin-card">
+      <div class="admin-card__head">
+        <div>
+          <strong>{{ s.title }}</strong>
+          <span class="tag">{{ 'Anime' if s.kind == 'anime' else 'Manhwa' }}</span>
+        </div>
+        <div class="admin-actions">
+          <a class="btn" href="{{ url_for('story_detail', story_id=s.id) }}">Ko'rish</a>
+          <a class="btn" href="{{ url_for('admin_story_edit', story_id=s.id) }}">Tahrirlash</a>
+          <a class="btn btn--solid" href="{{ url_for('admin_chapter_new', story_id=s.id) }}">+ {{ 'Qism' if s.kind == 'anime' else 'Bob' }}</a>
+          <form method="post" action="{{ url_for('admin_story_delete', story_id=s.id) }}" style="display:inline;"
+                onsubmit="return confirm('Hikoya va uning barcha {{ kind_word(s.kind) }}lari o\'chiriladi. Davom etasizmi?');">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn btn--danger" type="submit">O'chirish</button>
+          </form>
+        </div>
+      </div>
+      <div class="admin-chapters">
+        {% for ch in chapters.get(s.id, []) %}
+        <div class="admin-chapter">
+          <span>{{ ch.number }}-{{ kind_word(s.kind) }}{% if ch.title %} · {{ ch.title }}{% endif %}</span>
+          <form method="post" action="{{ url_for('admin_chapter_delete', chapter_id=ch.id) }}" style="display:inline;"
+                onsubmit="return confirm('Bu {{ kind_word(s.kind) }} o\'chirilsinmi?');">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="link-danger" type="submit">o'chirish</button>
+          </form>
+        </div>
+        {% else %}
+        <p class="hint">Hali {{ kind_word(s.kind) }} qo'shilmagan.</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <p style="color:var(--graphite);">Hali hikoya yo'q. "Yangi hikoya" tugmasini bosing.</p>
+    {% endfor %}
+
+    <div class="section__head" style="margin-top:64px;"><h2 class="section__title">Yangiliklar</h2></div>
+    <form class="form" method="post" action="{{ url_for('admin_news_new') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div><label for="ntitle">Sarlavha</label><input id="ntitle" type="text" name="title" required></div>
+      <div><label for="nbody">Matn (ixtiyoriy)</label><textarea id="nbody" name="body"></textarea></div>
+      <button class="btn btn--solid" type="submit" style="align-self:flex-start;">Yangilik qo'shish</button>
+    </form>
+    <div class="news-list" style="margin-top:24px;">
+      {% for n in news %}
+      <div class="news-item">
+        <div class="news-item__date">{{ n.created_at[:10] }}</div>
+        <div style="flex:1;"><div class="news-item__title">{{ n.title }}</div></div>
+        <form method="post" action="{{ url_for('admin_news_delete', news_id=n.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="link-danger" type="submit">o'chirish</button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

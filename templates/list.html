@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "_macros.html" import story_card with context %}
+{% block title %}{{ page_title }} — Infinite Anime/Manhwa{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 48px;">
+  <div class="wrap">
+    <div class="section__head"><h1 class="section__title">{{ page_title }}</h1></div>
+
+    <form class="filters" method="get" action="{{ url_for(endpoint) }}">
+      <input type="text" name="q" placeholder="Nom bo'yicha qidirish..." value="{{ q }}">
+      {% if genre %}<input type="hidden" name="genre" value="{{ genre }}">{% endif %}
+      <button class="btn btn--solid" type="submit">Qidirish</button>
+    </form>
+
+    {% if genres %}
+    <div class="chips">
+      <a class="chip {% if not genre %}is-active{% endif %}" href="{{ url_for(endpoint, q=q or None) }}">Hammasi</a>
+      {% for g in genres %}
+        <a class="chip {% if g == genre %}is-active{% endif %}" href="{{ url_for(endpoint, genre=g, q=q or None) }}">{{ g }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="grid">
+      {% for s in stories %}{{ story_card(s) }}
+      {% else %}
+      <p style="color:var(--graphite);">
+        {% if q or genre %}Hech narsa topilmadi.{% else %}Hozircha hech narsa qo'shilmagan.{% endif %}
+      </p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

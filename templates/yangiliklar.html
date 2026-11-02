@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yangiliklar — Infinite Anime/Manhwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">INFINITE<span>ANIME/MANHWA</span></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menyuni ochish">☰</button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Bosh sahifa</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="manhwa.html">Manhwa</a></li>
+        <li><a href="yangiliklar.html" class="is-active">Yangiliklar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: var(--space-4);">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="section__title">Yangiliklar</h2>
+      </div>
+
+      <!-- Har bir .news-item - bitta yangilik. Sana + sarlavha + qisqa tavsif.
+           Haqiqiy bob/yangilik chiqqanda shu yerga yangi .news-item qo'shiladi -->
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item__date">13-sen</div>
+          <div>
+            <div class="news-item__title">Manhwa'ning yangi bobi chiqdi</div>
+            <div class="news-item__desc">Hikoyaning davomi endi o'qish uchun tayyor.</div>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-item__date">01-sen</div>
+          <div>
+            <div class="news-item__title">Sayt ishga tushdi</div>
+            <div class="news-item__desc">Infinite Anime/Manhwa rasman ochildi — anime va manhwa bo'limlari qo'shildi.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Infinite Anime/Manhwa. Barcha kontent muallifga tegishli.
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('is-open');
+    });
+  </script>
+</body>
+</html>

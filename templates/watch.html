@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tomosha qilish — Infinite Anime/Manhwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">INFINITE<span>ANIME/MANHWA</span></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menyuni ochish">☰</button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Bosh sahifa</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="manhwa.html">Manhwa</a></li>
+        <li><a href="yangiliklar.html">Yangiliklar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <button class="back-btn" onclick="history.back()">← Orqaga</button>
+  </div>
+
+  <section class="wrap">
+        <div class="video-player">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        allow="accelerated-video; autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+        style="width:100%; height:100%; border:0;">
+      </iframe>
+    </div>
+
+    
+    <section class="section">
+      <div class="section__head">
+        <h2 class="section__title">Barcha qismlar</h2>
+      </div>
+          <div class="watch-meta">
+      <a href="story.html" class="reader-head__story">Hikoya nomi</a>
+      <h1 class="watch-meta__title" id="qismTitle">2-qism</h1>
+      <span class="reader-head__progress" id="qismProgress">2 / 12-qism</span>
+    </div>
+
+    <div class="reader-nav">
+      <a href="#" class="btn" id="prevBtn">← Oldingi qism</a>
+      <a href="#" class="btn btn--solid" id="nextBtn">Keyingi qism →</a>
+    </div>
+      <div class="episode-row" id="episodeRow">
+        <a href="watch.html?ep=1" class="episode-card" data-ep="1">
+          <div class="episode-card__thumb">1-qism</div>
+        </a>
+        <a href="watch.html?ep=2" class="episode-card" data-ep="2">
+          <div class="episode-card__thumb">2-qism</div>
+        </a>
+        <a href="watch.html?ep=3" class="episode-card" data-ep="3">
+          <div class="episode-card__thumb">3-qism</div>
+        </a>
+        <a href="watch.html?ep=4" class="episode-card" data-ep="4">
+          <div class="episode-card__thumb">4-qism</div>
+        </a>
+        <a href="watch.html?ep=5" class="episode-card" data-ep="5">
+          <div class="episode-card__thumb">5-qism</div>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <footer class="footer">
+    © 2026 Infinite Anime/Manhwa. Barcha kontent muallifga tegishli.
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('is-open');
+    });
+        // Qism raqamini URL'dan olib, sarlavha va tugmalarni yangilash
+    const totalQismlar = 12; // jami qismlar soni - o'zgartirib turing
+    const params = new URLSearchParams(window.location.search);
+    let ep = parseInt(params.get('ep')) || 1;
+    if (ep < 1) ep = 1;
+    if (ep > totalQismlar) ep = totalQismlar;
+
+    document.getElementById('qismTitle').textContent = ep + '-qism';
+    document.getElementById('qismProgress').textContent = ep + ' / ' + totalQismlar + '-qism';
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (ep <= 1) {
+      prevBtn.classList.add('is-disabled');
+    } else {
+      prevBtn.href = 'watch.html?ep=' + (ep - 1);
+    }
+
+    if (ep >= totalQismlar) {
+      nextBtn.classList.add('is-disabled');
+    } else {
+      nextBtn.href = 'watch.html?ep=' + (ep + 1);
+    }
+
+    document.querySelectorAll('.episode-card').forEach(card => {
+      card.classList.toggle('is-active', parseInt(card.dataset.ep) === ep);
+    });
+  </script>
+</body>
+</html>
